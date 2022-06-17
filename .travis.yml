@@ -9,14 +9,22 @@ script:
   - docker run -e CI=true bahaa129/fibo-test npm  test     
 
 after_success: 
-  - docker build -t bahaa129/fibo-worker ./worker
-  - docker build -t bahaa129/fibo-server ./server
-  - docker build -t bahaa129/fibo-frontend ./client 
-  - docker build -t bahaa129/fibo-nginx ./nginx 
+  - docker-compose build .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push bahaa129/fibo-nginx
   - docker push bahaa129/fibo-server
   - docker push bahaa129/fibo-frontend
   - docker push bahaa129/fibo-worker
-
+  
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'fibo-app'
+  env: 'Fiboapp-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-005798589000'
+  bucket_path: 'fibo-app'
+  on:
+    branch: master
+  access_key_id: $AWS_SECRET_ID
+  secret_access_key: $AWS_SECRET_KEY
    
