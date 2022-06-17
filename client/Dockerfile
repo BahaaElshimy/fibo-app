@@ -11,7 +11,7 @@ RUN mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
 
 copy . .
 
-cmd ["npm" , "run" ,  "start"]
+cmd ["npm" , "run" ,  "build"]
 
 
 from nginx
