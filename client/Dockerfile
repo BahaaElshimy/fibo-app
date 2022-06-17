@@ -2,14 +2,13 @@ from node:16-alpine as builder
 
 workdir /app
 
-copy package.json /app
+copy package.json .
 
 RUN  npm install
 
 copy . .
 
-cmd ["npm" , "run" ,  "build"]
-
+run npm run build
 
 from nginx
 expose 3000

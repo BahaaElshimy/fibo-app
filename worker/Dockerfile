@@ -1,4 +1,4 @@
-from node:14.14.0-alpine
+from node:14.14.0-alpine as builder
 
 workdir /app
 
@@ -9,3 +9,4 @@ RUN  npm install
 copy . .
 
 cmd ["npm" , "run" ,  "start"]
+
