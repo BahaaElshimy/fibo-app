@@ -3,13 +3,13 @@ services:
     nginx:
         image: "bahaa129/fibo-nginx"
         mem_limit: 128m
-        hostname: client
+        hostname: nginx
         ports:
            - 80:80        
     fibo-backend:
         image: "bahaa129/fibo-server"
         mem_limit: 128m
-        hostname: client
+        hostname: fibo-backend
         environment:
              REDIS_HOST: $REDIS_HOST
              REDIS_PORT: $REDIS_PORT
@@ -25,7 +25,7 @@ services:
     worker:
         image: "bahaa129/fibo-worker"
         mem_limit: 128m
-        hostname: client
+        hostname: worker
         environment:
            REDIS_HOST: $REDIS_HOST
            REDIS_PORT: $REDIS_PORT     
