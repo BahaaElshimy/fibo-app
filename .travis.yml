@@ -13,4 +13,10 @@ after_success:
   - docker build -t bahaa129/fibo-server ./server
   - docker build -t bahaa129/fibo-frontend ./client 
   - docker build -t bahaa129/fibo-nginx ./nginx 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push bahaa129/fibo-nginx
+  - docker push bahaa129/fibo-server
+  - docker push bahaa129/fibo-frontend
+  - docker push bahaa129/fibo-worker
+
    
