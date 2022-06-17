@@ -16,5 +16,5 @@ cmd ["npm" , "run" ,  "start"]
 
 from nginx
 expose 3000
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 copy --from=builder /app/build /usr/share/nginx/html
