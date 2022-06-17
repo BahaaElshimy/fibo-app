@@ -1,13 +1,10 @@
-from node:16-alpine
+from node:16-alpine as builder
 
 workdir /app
 
 copy package.json /app
 
 RUN  npm install
-
-RUN mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
-
 
 copy . .
 
